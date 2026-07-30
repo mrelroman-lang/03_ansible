@@ -1,13 +1,10 @@
 #cloud-config
 users:
-  - name: roman
+  - name: ubuntu
     groups: sudo
     shell: /bin/bash
-    lock_passwd: true
-    sudo: 'ALL=(ALL) NOPASSWD:ALL'
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
     ssh_authorized_keys: ${jsonencode(ssh_public_key)}
-
-ssh_pwauth: false
 
 package_update: true
 package_upgrade: false
@@ -16,5 +13,5 @@ packages:
   - nginx  # Устанавливаем Nginx
 
 runcmd:
-  - systemctl enable nginx 
+  - systemctl enable nginx
   - systemctl start nginx

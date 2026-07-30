@@ -38,9 +38,9 @@ module "marketing-vm" {
     project = var.vm_labels[0]
  }
   metadata = {
-    user_data = templatefile("${path.module}/vms/cloud-init.yml", {
+    user_data = templatefile("${path.module}/cloud-init.yml", {
     vm_user = var.vm_user
-    ssh_public_key = var.ssh_public_keys
+    ssh_public_key = var.ssh_public_key
   })
     serial-port-enable = 1
     enable-oslogin = false
@@ -65,10 +65,10 @@ module "analytic-vm" {
  }
 
   metadata = {
-    enable-oslogin = var.enable_oslogin ? "true" : null
-    user_data = templatefile("${path.module}/vms/cloud-init.yml", {
+    enable-oslogin = var.enable_oslogin ? "trBBue" : null
+    user_data = templatefile("${path.module}/cloud-init.yml", {
     vm_user = var.vm_user
-    ssh_public_key = var.ssh_public_keys
+    ssh_public_key = var.ssh_public_key
   })
     serial-port-enable = 1
   }

@@ -108,6 +108,11 @@ variable "ssh_key" {
   type      = string
   sensitive = true
 }
-variable "ssh_public_keys" {
+variable "ssh_public_key" {
   type = list(string)
+  default = [ 
+    "/home/roman/.ssh/id_ed25519.pub",
+    "/home/roman/.ssh/id_rsa.pub"
+    ]
+  description = "ssh-keygen -t ed25519"
 }
