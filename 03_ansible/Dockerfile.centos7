@@ -1,0 +1,17 @@
+#FROM centos
+#FROM almalinux:7
+FROM registry.access.redhat.com/ubi9/python-39:latest
+
+RUN # yum update -y && \
+    yum install -y gcc openssl-devel bzip2-devel libffi-devel zlib-devel wget tar && \
+    cd /tmp && \
+    wget https://www.python.org/ftp/python/3.9.18/Python-3.9.18.tgz && \
+    tar xzf Python-3.9.18.tgz && \
+    cd Python-3.9.18 && \
+    ./configure --enable-optimizations && \
+    make -j$(nproc) && \
+    make altinstall && \
+    cd / && \
+    rm -rf /tmp/Python-3.9.18*
+
+CMD ["python3.9"]

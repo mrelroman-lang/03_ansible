@@ -1,0 +1,26 @@
+#FROM python:3.9 centos/python-39-centos7
+
+FROM registry.access.redhat.com/ubi9/python-39
+# Add application sources to a directory that the assemble script expects them
+# and set permissions so that the container runs without root access
+USER 0
+ADD app-src /tmp/src
+RUN chown -R 1001:0 /tmp/src
+USER 1001
+# Install the dependencies
+RUN /usr/libexec/s2i/assemble
+# Set the default command for the resulting image
+CMD /usr/libexec/s2i/run
+RUN yum update -y && \
+    yum install -y gcc openssl-devel bzip2-devel libffi-devel zlib-devel wget tar && \
+    cd /tmp && \
+    wget https://www.python.org/ftp/python/3.9.18/Python-3.9.18.tgz && \
+    tar xzf Python-3.9.18.tgz && \
+    cd Python-3.9.18 && \
+    ./configure --enable-optimizations && \
+    make -j$(nproc) && \
+    make altinstall && \
+    cd / && \
+    rm -rf /tmp/Python-3.9.18*
+
+CMD ["python3.9"]
