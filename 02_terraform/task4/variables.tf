@@ -3,17 +3,14 @@ variable "token" {
   type        = string
   description = "OAuth-token; https://cloud.yandex.ru/docs/iam/concepts/authorization/oauth-token"
 }
-
 variable "cloud_id" {
   type        = string
   description = "https://cloud.yandex.ru/docs/resource-manager/operations/cloud/get-id"
 }
-
 variable "folder_id" {
   type        = string
   description = "https://cloud.yandex.ru/docs/resource-manager/operations/folder/get-id"
 }
-
 variable "default_zone" {
   type        = string
   default     = "ru-central1-a"
@@ -33,6 +30,7 @@ variable "vm_user" {
   type        = string
   description = "VM user name"
 }
+
 ##common vars
 variable "vm_db_nat" {
   type        = bool
@@ -40,21 +38,7 @@ variable "vm_db_nat" {
   description = "yandex_compute_instance resources nat"
  } 
 
-###example vm_web var
-variable "vm_web_name" {
-  type        = string
-  default     = "netology-develop-platform-web"
-  description = "example vm_web_ prefix"
-}
-
-###example vm_db var
-variable "vm_db_name" {
-  type        = string
-  default     = "netology-develop-platform-db"
-  description = "example vm_db_ prefix"
-}
-
-###yandex_compute default
+##yandex_compute default
  variable "vm_family" {
   type        = string
   default     = "ubuntu-2004-lts"
@@ -96,7 +80,8 @@ variable "default_vm_instance" {
     nat           = false
   }
 }
-###label
+
+##label
 variable "vm_labels" {
   type = list(string)
   default = [
@@ -104,6 +89,8 @@ variable "vm_labels" {
     "analitics"
   ]
 }
+
+##ssh
 variable "ssh_key" {
   type      = string
   sensitive = true

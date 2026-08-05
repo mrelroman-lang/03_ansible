@@ -1,0 +1,30 @@
+services:
+  ubuntu-target:
+    build:
+      context: ./01
+      dockerfile: Dockerfile
+    container_name: ubuntu-01-container
+    hostname: clickhouse-01
+    ports:
+      - "2222:22"
+    restart: unless-stopped
+
+#  rockylinux8-target:
+#    build:
+#      context: ./02
+#      dockerfile: Dockerfile
+#    container_name: rockylinux8-target
+#    hostname: clickhouse-02
+#    ports:
+#      - "2223:22"
+#    restart: unless-stopped
+
+  almalinux-target:
+    build:
+      context: ./03
+      dockerfile: Dockerfile
+    container_name: almalinux-ssh-container
+    hostname: clickhouse-03
+    ports:
+      - "2224:22"
+    restart: unless-stopped
